@@ -9,7 +9,11 @@ function tab(t)
 		return setmetatable(t,{
 			__index = table,
 			__newindex = function(t,k,v)
-							rawset(t,k,tab(v))
+							if type(v) == 'table' then
+								rawset(t,k,tab(v))
+							else
+								rawset(t,k,v)
+							end
 					end,
 			tab = true
 			})
