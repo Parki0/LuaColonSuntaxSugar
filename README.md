@@ -12,7 +12,7 @@ a:sort() -- {1,2,3}
 If table has a metatable already it will raise an error.
 ```lua
 b = setmetatable({1,2,3,4},{__index = a})
-tab(b)
+tab(b) -- Raises an error.
 ```
 Could be used to already exist table too.
 ```lua
@@ -29,20 +29,19 @@ end
 Returns is table has the tab metatable.
 ```lua
 a = tab{1,2,3}
-print(isTab(a))
+print(isTab(a)) -- true
 ```
 New tables inside the table will has the metatable too
 ```lua
 a = tab{1,2,3}
 a[4] = {4,5,6}
--- a[4] have the tab matatable too.
-print(isTab(a[4]))
+print(isTab(a[4])) -- true 
 ```
 
 TODO
 =======
 - Correct my english
-- make variadic
+- make it variadic
 
 License
 =======
