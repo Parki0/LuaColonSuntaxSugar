@@ -9,7 +9,7 @@ function tab(t)
 		return setmetatable(t,{
 			__index = table,
 			__newindex = function(t,k,v)
-							if type(v) == 'table' then
+							if type(v) == 'table' and isTab(v) == false then
 								rawset(t,k,tab(v))
 							else
 								rawset(t,k,v)
@@ -25,5 +25,9 @@ function tab(t)
 end
 function isTab(t)
 	assert(type(t)=='table','Got '..type(t)..' table expected.')
-	return getmetatable(t).tab
+	if getmetatable(t) ~= nil then
+		return getmetatable(t).tab
+	else
+		return false
+	end
 end
